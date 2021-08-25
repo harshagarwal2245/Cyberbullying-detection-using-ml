@@ -24,4 +24,7 @@ dvc init
 dvc add data_given\cybertrolls.json
 
 to download data use command
+
+```
 dvc pull 
+```
