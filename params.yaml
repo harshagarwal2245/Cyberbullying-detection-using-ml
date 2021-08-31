@@ -1,0 +1,31 @@
+base:
+  project: Cyberbullying-Detection
+  random_state: 42
+  target_col: label
+
+data_source:
+  s3_source: data_given\cybertrolls.json
+
+load_data:
+  raw_dataset_csv: data\raw\cybertrolls.json
+
+split_data:
+  train_path: data\processed\train_cyberbullying.csv
+  test_path: data\processed\test_cyberbullying.csv
+  test_size: 0.3
+
+estimators:
+  RandomForestClassifier:
+    params:
+      #n_estimators: 100
+      #max_feature: 6
+      n_estimators: 100
+      max_feature: 7
+model_dir:
+  saved_models 
+
+reports: 
+  params: report\param.json
+  scores: report\scores.json
+
+webapp_model_dir: prediction_service\\model\\finalized_model.sav 
