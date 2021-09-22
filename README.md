@@ -22,7 +22,8 @@ used for experimentation and finalizing ml model and pipeline
 Refrences: Contains all reference papers and project documents
 
 Src: contains file which will be used as module for web developindment
-purpose```
+purpose
+```
 
 create env
 
