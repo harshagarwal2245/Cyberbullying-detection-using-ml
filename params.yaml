@@ -15,12 +15,12 @@ split_data:
   test_size: 0.33
 
 estimators:
-  RandomForestClassifier:
+  SupportVectorClassifier:
     params:
       #n_estimators: 100
       #max_feature: 6
-      n_estimators: 100
-      max_feature: 7
+      gamma: auto
+      random_state: 0
 model_dir:
   saved_models 
 

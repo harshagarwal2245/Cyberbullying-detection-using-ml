@@ -16,3 +16,20 @@ stages:
     outs:
     - data\processed\train_cybertrolls.csv
     - data\processed\test_cybertrolls.csv 
+
+  train_and_evaluate:
+    cmd: python src/train_and_evaluate.py --config=params.yaml
+    deps:
+    - data/processed/train_cybertrolls.csv
+    - data/processed/test_cybertrolls.csv 
+    - src/train_and_evaluate.py
+    params:
+    - estimators.SupportVectorClassifier.params.gamma
+    - estimators.SupportVectorClassifier.params.random_state
+    metrics:
+    - report\scores.json:
+        cache: false
+    - report\param.json:
+        cache: false
+    outs:
+      - saved_models/finalized_model.sav

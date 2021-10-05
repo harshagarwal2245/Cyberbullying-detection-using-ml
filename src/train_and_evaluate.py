@@ -115,20 +115,77 @@ def extract_features(tweet, freqs):
     return x
 
 
+def eval_metrics(actual, pred):
+    accuracy = accuracy_score(actual, pred)
+    cm = confusion_matrix(actual, pred)
+    cr = classification_report(actual, pred)
+    return accuracy, cm, cr
+
+
 def train_and_evaluate(config_path):
     config = read_params(config_path)
     test_data_path = config["split_data"]["test_path"]
     train_data_path = config["split_data"]["train_path"]
-    random_state = config["base"]["random_state"]
+    #random_state = config["base"]["random_state"]
     model_dir = config["model_dir"]
     target = config["base"]["target_col"]
+    gamma = config["estimators"]["SupportVectorClassifier"]["params"]["gamma"]
+    random_state = config["estimators"]["SupportVectorClassifier"]["params"]["random_state"]
     train_data = pd.read_csv(train_data_path)
     test_data = pd.read_csv(test_data_path)
     train_y = train_data[target]
     test_y = test_data[target]
-
     train_x = train_data["content"]
     test_x = test_data["content"]
+    freqs = build_freqs(train_x,train_y)
+    ############################ transformation ###############################33
+    X = np.zeros((len(train_x), 3))
+    for i in range(len(train_x)):
+        X[i, :]= extract_features(train_x[i], freqs)
+    Y = train_y
+    X_t = np.zeros((len(test_x), 3))
+    for i in range(len(test_x)):
+        X_t[i, :]= extract_features(test_x[i], freqs)
+    Y_t = test_y
+    ########################Model training#######################################
+    svm_clf = SVC(gamma=gamma, random_state=random_state)
+    svm_clf.fit(X, Y)
+    ######################Evaluating############################################
+    predicted_qualities = svm_clf.predict(X_t)
+
+    (acc, cm, rf) = eval_metrics(Y_t, predicted_qualities)
+
+    #print("Random forest model (n_estimator=%f, max_feature=%f):" %
+    #      (n_estimator, max_feature))
+    print("  Accuracy: %s" % acc)
+    print("  Confusion matrix: %s" % cm)
+    print("  Classification Report: %s" % rf)
+    print(predicted_qualities[0])
+    ####################Logging####################################################3
+    scores_file = config["reports"]["scores"]
+    params_file = config["reports"]["params"]
+
+    with open(scores_file, "w") as f:
+        scores = {
+            "acc": acc            
+
+        }
+        json.dump(scores, f, indent=4)
+
+    with open(params_file, "w") as f:
+        params = {
+            "n_estimator": gamma,
+            "random_state": random_state        }
+
+        json.dump(params, f, indent=4)
+
+    os.makedirs(model_dir, exist_ok=True)
+    model_path = os.path.join(model_dir, "finalized_model.sav")
+    joblib.dump(svm_clf, model_path)
+
+
+
+
 
 
 

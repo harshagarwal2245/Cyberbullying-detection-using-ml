@@ -1,0 +1,4 @@
+{
+    "n_estimator": "auto",
+    "random_state": 0
+}
