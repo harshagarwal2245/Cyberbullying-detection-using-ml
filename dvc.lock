@@ -1,0 +1,18 @@
+schema: '2.0'
+stages:
+  load_data:
+    cmd: python src\load_data.py --config=params.yaml
+    deps:
+    - path: data_given\cybertrolls.json
+      md5: 2fd8ec4af6f84e031fb397c369ec8d0c
+      size: 2755907
+    - path: src\get_data.py
+      md5: 35d8eef0eb99c6e59e565874a857e503
+      size: 1030
+    - path: src\load_data.py
+      md5: 4dc6e0b408111b0cfea79df7c26402d6
+      size: 855
+    outs:
+    - path: data\raw\cybertrolls.json
+      md5: 80dff4b7cee8b28f1b11ef8453b0e6b8
+      size: 2077483
