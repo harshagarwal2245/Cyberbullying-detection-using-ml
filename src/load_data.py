@@ -16,7 +16,7 @@ def load_and_save(config_path):
     df["label"] = df.label.apply(lambda x: x[0])
     df['label']=df['label'].astype(int)
     df.drop(['extras'],inplace=True,axis=1) 
-    df.to_csv(raw_data_path, index=False)
+    df.to_csv(raw_data_path)
 
 
  # run comment

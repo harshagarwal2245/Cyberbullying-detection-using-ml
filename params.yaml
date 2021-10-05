@@ -7,12 +7,12 @@ data_source:
   s3_source: data_given\cybertrolls.json
 
 load_data:
-  raw_dataset_csv: data\raw\cybertrolls.json
+  raw_dataset_csv: data\raw\cybertrolls.csv
 
 split_data:
-  train_path: data\processed\train_cyberbullying.csv
-  test_path: data\processed\test_cyberbullying.csv
-  test_size: 0.3
+  train_path: data\processed\train_cybertrolls.csv
+  test_path: data\processed\test_cybertrolls.csv
+  test_size: 0.33
 
 estimators:
   RandomForestClassifier:
