@@ -184,17 +184,6 @@ def train_and_evaluate(config_path):
     joblib.dump(svm_clf, model_path)
 
 
-
-
-
-
-
-
-
-
-
-
-
 if __name__ == "__main__":
     args = argparse.ArgumentParser()
     args.add_argument("--config", default="params.yaml")
