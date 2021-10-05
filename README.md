@@ -23,6 +23,11 @@ Refrences: Contains all reference papers and project documents
 
 Src: contains file which will be used as module for web developindment
 purpose
+
+Report: Contains two file which is used for logging parametes and 
+results
+
+Saved models: which is used to save model file for api creation
 ```
 
 create env
