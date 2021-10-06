@@ -2,4 +2,8 @@ dvc
 dvc[gdrive]
 sklearn
 pyyaml
+numpy
+flask
 pandas
+tox
+pytest
