@@ -135,10 +135,9 @@ def predict(data):
     return prediction
 
 def form_response(dict_request):
-    if validate_input(dict_request):
-        data = dict_request.values()
-        response = predict(data)
-        return response 
+    data = dict_request.values()
+    response = predict(data)
+    return response 
 
 if __name__ == "__main__":
     print(predict("Hi this is harsh"))

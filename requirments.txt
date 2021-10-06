@@ -7,3 +7,4 @@ flask
 pandas
 tox
 pytest
+flake8
