@@ -8,16 +8,16 @@ import argparse
 import numpy as np
 import pandas as pd
 
+
 def load_and_save(config_path):
     config = read_params(config_path)
     df = get_data(config_path)
     raw_data_path = config["load_data"]["raw_dataset_csv"]
     df["label"] = df.annotation.apply(lambda x: x.get('label'))
     df["label"] = df.label.apply(lambda x: x[0])
-    df['label']=df['label'].astype(int)
-    df.drop(['extras'],inplace=True,axis=1) 
+    df['label'] = df['label'].astype(int)
+    df.drop(['extras'], inplace=True, axis=1)
     df.to_csv(raw_data_path)
-
 
  # run comment
 if __name__ == "__main__":

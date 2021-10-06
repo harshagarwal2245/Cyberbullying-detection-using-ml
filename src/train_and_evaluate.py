@@ -7,7 +7,7 @@ import os
 #import warning
 import sys
 import json
-import re 
+import re
 import string
 import argparse
 import pandas as pd
@@ -19,7 +19,7 @@ from sklearn.svm import SVC
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
-from nltk.tokenize import TweetTokenizer 
+from nltk.tokenize import TweetTokenizer
 from get_data import read_params
 import joblib
 
@@ -85,7 +85,7 @@ def build_freqs(tweets, ys):
             else:
                 freqs[pair] = 1
 
-    return freqs 
+    return freqs
 
 
 def extract_features(tweet, freqs):
@@ -99,18 +99,18 @@ def extract_features(tweet, freqs):
     # process_tweet tokenizes, stems, and removes stopwords
     word_l = process_tweet(tweet)
     # 3 elements in the form of a 1 x 3 vector
-    x = np.zeros((1, 3)) 
-    
-    #bias term is set to 1
-    x[0,0] = 1 
+    x = np.zeros((1, 3))
+
+    # bias term is set to 1
+    x[0, 0] = 1
     # loop through each word in the list of words
     for word in word_l:
-        
+
         # increment the word count for the positive label 1
-        x[0,1] += freqs.get((word, 1.0),0)
-        
+        x[0, 1] += freqs.get((word, 1.0), 0)
+
         # increment the word count for the negative label 0
-        x[0,2] += freqs.get((word, 0.0),0)
+        x[0, 2] += freqs.get((word, 0.0), 0)
     assert(x.shape == (1, 3))
     return x
 
@@ -137,15 +137,15 @@ def train_and_evaluate(config_path):
     test_y = test_data[target]
     train_x = train_data["content"]
     test_x = test_data["content"]
-    freqs = build_freqs(train_x,train_y)
-    ############################ transformation ###############################33
+    freqs = build_freqs(train_x, train_y)
+    # transformation ###############################33
     X = np.zeros((len(train_x), 3))
     for i in range(len(train_x)):
-        X[i, :]= extract_features(train_x[i], freqs)
+        X[i, :] = extract_features(train_x[i], freqs)
     Y = train_y
     X_t = np.zeros((len(test_x), 3))
     for i in range(len(test_x)):
-        X_t[i, :]= extract_features(test_x[i], freqs)
+        X_t[i, :] = extract_features(test_x[i], freqs)
     Y_t = test_y
     ########################Model training#######################################
     svm_clf = SVC(gamma=gamma, random_state=random_state)
@@ -155,19 +155,19 @@ def train_and_evaluate(config_path):
 
     (acc, cm, rf) = eval_metrics(Y_t, predicted_qualities)
 
-    #print("Random forest model (n_estimator=%f, max_feature=%f):" %
+    # print("Random forest model (n_estimator=%f, max_feature=%f):" %
     #      (n_estimator, max_feature))
     print("  Accuracy: %s" % acc)
     print("  Confusion matrix: %s" % cm)
     print("  Classification Report: %s" % rf)
     print(predicted_qualities[0])
-    ####################Logging####################################################3
+    # Logging####################################################3
     scores_file = config["reports"]["scores"]
     params_file = config["reports"]["params"]
 
     with open(scores_file, "w") as f:
         scores = {
-            "acc": acc            
+            "acc": acc
 
         }
         json.dump(scores, f, indent=4)
@@ -175,7 +175,7 @@ def train_and_evaluate(config_path):
     with open(params_file, "w") as f:
         params = {
             "n_estimator": gamma,
-            "random_state": random_state        }
+            "random_state": random_state}
 
         json.dump(params, f, indent=4)
 

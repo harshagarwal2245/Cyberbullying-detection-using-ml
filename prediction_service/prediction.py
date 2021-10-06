@@ -5,15 +5,14 @@ import joblib
 import numpy as np
 import sys
 import json
-import re 
+import re
 import string
 import argparse
 import pandas as pd
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
-from nltk.tokenize import TweetTokenizer 
-
+from nltk.tokenize import TweetTokenizer
 
 
 params_path = "params.yaml"
@@ -80,7 +79,7 @@ def build_freqs(tweets, ys):
             else:
                 freqs[pair] = 1
 
-    return freqs 
+    return freqs
 
 
 def extract_features(tweet, freqs):
@@ -94,27 +93,27 @@ def extract_features(tweet, freqs):
     # process_tweet tokenizes, stems, and removes stopwords
     word_l = process_tweet(tweet)
     # 3 elements in the form of a 1 x 3 vector
-    x = np.zeros((1, 3)) 
-    
-    #bias term is set to 1
-    x[0,0] = 1 
+    x = np.zeros((1, 3))
+
+    # bias term is set to 1
+    x[0, 0] = 1
     # loop through each word in the list of words
     for word in word_l:
-        
+
         # increment the word count for the positive label 1
-        x[0,1] += freqs.get((word, 1.0),0)
-        
+        x[0, 1] += freqs.get((word, 1.0), 0)
+
         # increment the word count for the negative label 0
-        x[0,2] += freqs.get((word, 0.0),0)
+        x[0, 2] += freqs.get((word, 0.0), 0)
     assert(x.shape == (1, 3))
     return x
-
 
 
 def read_params(config_path=params_path):
     with open(config_path) as yaml_file:
         config = yaml.safe_load(yaml_file)
     return config
+
 
 def predict(data):
     config = read_params(params_path)
@@ -126,18 +125,20 @@ def predict(data):
     train_data = pd.read_csv(train_data_path)
     train_y = train_data[target]
     train_x = train_data["content"]
-    freqs = build_freqs(train_x,train_y)
+    freqs = build_freqs(train_x, train_y)
     print(type(data))
-    tweet=process_tweet(data)
-    x = extract_features(tweet,freqs)
+    tweet = process_tweet(data)
+    x = extract_features(tweet, freqs)
     model = joblib.load(model_dir_path)
     prediction = model.predict(x).tolist()[0]
     return prediction
 
+
 def form_response(dict_request):
     data = dict_request.values()
     response = predict(data)
-    return response 
+    return response
+
 
 if __name__ == "__main__":
     print(predict("Hi this is harsh"))
