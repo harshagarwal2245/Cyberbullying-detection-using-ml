@@ -7,11 +7,11 @@ stages:
       md5: 2fd8ec4af6f84e031fb397c369ec8d0c
       size: 2755907
     - path: src\get_data.py
-      md5: 35d8eef0eb99c6e59e565874a857e503
-      size: 1030
+      md5: edefc4ac6a20157b76bb1c3c4ccf8c52
+      size: 1049
     - path: src\load_data.py
-      md5: 903553036c23fe5d7d72f45d55d3a3b4
-      size: 842
+      md5: a8cf6e32c588b30daf10932850d494b1
+      size: 847
     outs:
     - path: data\raw\cybertrolls.csv
       md5: 51ba6de5bd46638e41d6a8390345a3d1
@@ -23,27 +23,27 @@ stages:
       md5: 51ba6de5bd46638e41d6a8390345a3d1
       size: 2186374
     - path: src\split_data.py
-      md5: f1687c616351fddff4f8c3c25fc55e8e
-      size: 1364
+      md5: e0d97993817d733c4fabe71e0cf64670
+      size: 1373
     outs:
     - path: data\processed\test_cybertrolls.csv
-      md5: 6c20fc850ded388541c7b592bf9f2953
-      size: 724284
+      md5: 5855f59a3affca841cb2d756ebfaab59
+      size: 720771
     - path: data\processed\train_cybertrolls.csv
-      md5: 200755ad4bb6e5ffd7ff229eb8393847
-      size: 1462137
+      md5: 8271ca232f9e71ba7341f28cf00c663b
+      size: 1465650
   train_and_evaluate:
     cmd: python src/train_and_evaluate.py --config=params.yaml
     deps:
     - path: data/processed/test_cybertrolls.csv
-      md5: 6c20fc850ded388541c7b592bf9f2953
-      size: 724284
+      md5: 5855f59a3affca841cb2d756ebfaab59
+      size: 720771
     - path: data/processed/train_cybertrolls.csv
-      md5: 200755ad4bb6e5ffd7ff229eb8393847
-      size: 1462137
+      md5: 8271ca232f9e71ba7341f28cf00c663b
+      size: 1465650
     - path: src/train_and_evaluate.py
-      md5: 2629865dcb2e6d765f9a1dc6a66d7dfe
-      size: 6510
+      md5: 1170b4e53cd2fbea26f4ac4fc7afa53a
+      size: 6409
     params:
       params.yaml:
         estimators.SupportVectorClassifier.params.gamma: auto
@@ -53,8 +53,8 @@ stages:
       md5: 19bf3793d1fdc3dfb41dd4c67aebb59d
       size: 55
     - path: report\scores.json
-      md5: c7a21a3df38d0bd9d54a9958f391099d
+      md5: 108cec24bfd859bd1c167674554fda67
       size: 35
-    - path: saved_models/finalized_model.sav
-      md5: 863795422ee42fc646ffc2bec66fa46b
-      size: 344
+    - path: saved_models/finalized_model1.sav
+      md5: ca15d82768d52c9a43b55d2a151fa0d9
+      size: 523169

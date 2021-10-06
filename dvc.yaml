@@ -32,4 +32,4 @@ stages:
     - report\param.json:
         cache: false
     outs:
-      - saved_models/finalized_model.sav
+      - saved_models/finalized_model1.sav

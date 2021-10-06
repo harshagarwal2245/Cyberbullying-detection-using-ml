@@ -8,3 +8,4 @@ pandas
 tox
 pytest
 flake8
+autopep8
