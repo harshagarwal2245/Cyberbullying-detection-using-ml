@@ -10,7 +10,7 @@ load_data:
   raw_dataset_csv: data\raw\cybertrolls.csv
 
 split_data:
-  train_path: data/processed/train_cybertrolls.csv
+  train_path: data\processed\train_cybertrolls.csv
   test_path: data\processed\test_cybertrolls.csv
   test_size: 0.33
 
