@@ -48,3 +48,9 @@ stages:
       params.yaml:
         estimators.SupportVectorClassifier.params.gamma: auto
         estimators.SupportVectorClassifier.params.random_state: 42
+  log_production_model:
+    cmd: python src/log_production_model.py --config=params.yaml
+    deps:
+    - path: src/log_production_model.py
+      md5: 3e1ea65dd58e12e3fe57e5ee3a93b2cf
+      size: 1733
