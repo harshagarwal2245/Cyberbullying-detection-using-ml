@@ -139,7 +139,7 @@ def form_response(dict_request):
 
 
 def api_response(dict_request):
-    data = list(dict_request.values())[0]
+    data = list(dict_request)[0]
     print(data)
     response = predict(data)
     response = {"response": response}
