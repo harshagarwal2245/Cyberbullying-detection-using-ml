@@ -11,3 +11,4 @@ flake8
 autopep8
 nltk
 gunicorn
+mlflow
