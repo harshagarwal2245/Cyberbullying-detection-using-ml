@@ -15,27 +15,26 @@ template_dir = os.path.join(webapp_root, "templates")
 app = Flask(__name__, static_folder=static_dir, template_folder=template_dir)
 
 
-
-
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
         try:
             if request.form:
-                data=dict(request.form).values() 
-                text=list(data)[0]
-                t=prediction.predict(text)
-                if t==0:
-                    response="This tweet doesn't contains cyberbullying actvitis"
+                data = dict(request.form).values()
+                t = prediction.form_response(data)
+                if t == 0:
+                    response = "This tweet doesn't contains cyberbullying activites"
                 else:
-                    response="This tweet contains cyberbullying actvitis"
+                    response = "This tweet contains cyberbullying activites"
 
-                return render_template("index.html",response=response)
-
+                return render_template("index.html", response=response)
+            elif request.json:
+                response = prediction.api_response(request.json)
+                return jsonify(response)
         except Exception as e:
             print(e)
-            error={"error":"Something went wrong"}
-            return render_template("404.html",error=error)
+            error = {"error": e}
+            return render_template("404.html", error=error)
     else:
         return render_template("index.html")
 

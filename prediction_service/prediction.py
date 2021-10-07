@@ -133,8 +133,15 @@ def predict(data):
 
 
 def form_response(dict_request):
-    data = dict_request.values()
-    response = predict(data)
+    text=list(dict_request)[0]
+    response = predict(text)
     return response
 
 
+def api_response(dict_request):
+    data = list(dict_request.values())[0]
+    print(data)
+    response = predict(data)
+    response = {"response": response}
+    return response
+    

@@ -1,4 +1,4 @@
 {
-    "n_estimator": "auto",
-    "random_state": 0
+    "n_estimator": "scale",
+    "random_state": 42
 }

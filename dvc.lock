@@ -46,15 +46,15 @@ stages:
       size: 6409
     params:
       params.yaml:
-        estimators.SupportVectorClassifier.params.gamma: auto
-        estimators.SupportVectorClassifier.params.random_state: 0
+        estimators.SupportVectorClassifier.params.gamma: scale
+        estimators.SupportVectorClassifier.params.random_state: 42
     outs:
     - path: report\param.json
-      md5: 19bf3793d1fdc3dfb41dd4c67aebb59d
-      size: 55
+      md5: 64efd08b7b2ffcb3b8d155b5632fe824
+      size: 57
     - path: report\scores.json
-      md5: 108cec24bfd859bd1c167674554fda67
+      md5: 48bc782820162a7f625a19e468ac1d3d
       size: 35
     - path: saved_models/finalized_model1.sav
-      md5: ca15d82768d52c9a43b55d2a151fa0d9
-      size: 523169
+      md5: 734c1b185d7a72c44df7a654a91d7a42
+      size: 396757

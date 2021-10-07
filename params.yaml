@@ -19,8 +19,8 @@ estimators:
     params:
       #n_estimators: 100
       #max_feature: 6
-      gamma: auto
-      random_state: 0
+      gamma: scale
+      random_state: 42
 model_dir:
   saved_models 
 
