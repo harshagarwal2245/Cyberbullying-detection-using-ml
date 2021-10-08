@@ -23,6 +23,7 @@ copying setup.py -> src-0.0.1
 copying src\__init__.py -> src-0.0.1\src
 copying src\get_data.py -> src-0.0.1\src
 copying src\load_data.py -> src-0.0.1\src
+copying src\log_production_model.py -> src-0.0.1\src
 copying src\split_data.py -> src-0.0.1\src
 copying src\train_and_evaluate.py -> src-0.0.1\src
 copying src.egg-info\PKG-INFO -> src-0.0.1\src.egg-info
@@ -44,6 +45,7 @@ adding 'src-0.0.1\setup.cfg'
 adding 'src-0.0.1\setup.py'
 adding 'src-0.0.1\src\get_data.py'
 adding 'src-0.0.1\src\load_data.py'
+adding 'src-0.0.1\src\log_production_model.py'
 adding 'src-0.0.1\src\split_data.py'
 adding 'src-0.0.1\src\train_and_evaluate.py'
 adding 'src-0.0.1\src\__init__.py'
