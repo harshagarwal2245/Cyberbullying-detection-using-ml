@@ -22,7 +22,8 @@ from nltk.stem import PorterStemmer
 from nltk.tokenize import TweetTokenizer
 from get_data import read_params
 import joblib
-
+import mlflow 
+from urllib.parse import urlparse
 
 def process_tweet(tweet):
     """Process tweet function.
@@ -147,41 +148,31 @@ def train_and_evaluate(config_path):
     for i in range(len(test_x)):
         X_t[i, :] = extract_features(test_x[i], freqs)
     Y_t = test_y
+    ###########################Model tracking ################################
+    mlflow_config=config["mlflow_config"]
+    remote_server_uri=mlflow_config["remote_server_uri"]
+    mlflow.set_tracking_uri(remote_server_uri)
+    mlflow.set_experiment(mlflow_config["experiment_name"])
+    with mlflow.start_run(run_name=mlflow_config["run_name"]) as run:
     ########################Model training#######################################
-    svm_clf = SVC(gamma=gamma, random_state=random_state)
-    svm_clf.fit(X, Y)
-    ######################Evaluating############################################
-    predicted_qualities = svm_clf.predict(X_t)
+        svm_clf = SVC(gamma=gamma, random_state=random_state)
+        svm_clf.fit(X, Y)
+        ######################Evaluating############################################
+        predicted_qualities = svm_clf.predict(X_t)
 
-    (acc, cm, rf) = eval_metrics(Y_t, predicted_qualities)
+        (acc, cm, rf) = eval_metrics(Y_t, predicted_qualities)
 
-    # print("Random forest model (n_estimator=%f, max_feature=%f):" %
-    #      (n_estimator, max_feature))
-    print("  Accuracy: %s" % acc)
-    print("  Confusion matrix: %s" % cm)
-    print("  Classification Report: %s" % rf)
-    print(predicted_qualities[0])
-    # Logging####################################################3
-    scores_file = config["reports"]["scores"]
-    params_file = config["reports"]["params"]
+        mlflow.log_param("gamma", gamma)
+        mlflow.log_param("random_State",random_state)
+        mlflow.log_metric("acc",acc)
+        #mlflow.log_metric("cm",cm)
 
-    with open(scores_file, "w") as f:
-        scores = {
-            "acc": acc
+        tracking_url_type_store= urlparse(mlflow.get_artifact_uri()).scheme 
+        if tracking_url_type_store != "file":
+            mlflow.sklearn.log_model(svm_clf, "model", registered_model_name=mlflow_config["registered_model_name"])
+        else:
+            mlflow.sklearn.load_model(svm_clf,"model")
 
-        }
-        json.dump(scores, f, indent=4)
-
-    with open(params_file, "w") as f:
-        params = {
-            "n_estimator": gamma,
-            "random_state": random_state}
-
-        json.dump(params, f, indent=4)
-
-    os.makedirs(model_dir, exist_ok=True)
-    model_path = os.path.join(model_dir, "finalized_model1.sav")
-    joblib.dump(svm_clf, model_path)
 
 
 if __name__ == "__main__":
