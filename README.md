@@ -73,3 +73,9 @@ to download data use command
 ```
 dvc pull 
 ```
+Ml flow tracks all artifacts like dvc but it gives 
+a proper ui it also keeps track of enviorment it creates
+db
+running mlfow server
+
+mlflow server --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./artifacts --host 127.0.0.1 -p 1234

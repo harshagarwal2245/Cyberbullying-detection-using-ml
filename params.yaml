@@ -10,7 +10,7 @@ load_data:
   raw_dataset_csv: data\raw\cybertrolls.csv
 
 split_data:
-  train_path: data\processed\train_cybertrolls.csv
+  train_path: data/processed/train_cybertrolls.csv
   test_path: data\processed\test_cybertrolls.csv
   test_size: 0.33
 
@@ -19,7 +19,7 @@ estimators:
     params:
       #n_estimators: 100
       #max_feature: 6
-      gamma: scale
+      gamma: auto
       random_state: 42
 model_dir:
   saved_models 
@@ -29,3 +29,10 @@ reports:
   scores: report\scores.json
 
 webapp_model_dir: prediction_service\\model\\finalized_model1.sav 
+
+mlflow_config:
+  artifacts_dir: artifacts
+  experiment_name: Svm classifier
+  run_name: mlops
+  registered_model_name: SvmCyberbullyingDetectionModel
+  remote_server_uri: http://127.0.0.1:1234

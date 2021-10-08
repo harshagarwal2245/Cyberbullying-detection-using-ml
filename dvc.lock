@@ -42,19 +42,15 @@ stages:
       md5: 8271ca232f9e71ba7341f28cf00c663b
       size: 1465650
     - path: src/train_and_evaluate.py
-      md5: 1170b4e53cd2fbea26f4ac4fc7afa53a
-      size: 6409
+      md5: 4f5c3fa07ccc163a73b5a7e5d31d4232
+      size: 6429
     params:
       params.yaml:
-        estimators.SupportVectorClassifier.params.gamma: scale
+        estimators.SupportVectorClassifier.params.gamma: auto
         estimators.SupportVectorClassifier.params.random_state: 42
-    outs:
-    - path: report\param.json
-      md5: 64efd08b7b2ffcb3b8d155b5632fe824
-      size: 57
-    - path: report\scores.json
-      md5: 48bc782820162a7f625a19e468ac1d3d
-      size: 35
-    - path: saved_models/finalized_model1.sav
-      md5: 734c1b185d7a72c44df7a654a91d7a42
-      size: 396757
+  log_production_model:
+    cmd: python src/log_production_model.py --config=params.yaml
+    deps:
+    - path: src/log_production_model.py
+      md5: 3e1ea65dd58e12e3fe57e5ee3a93b2cf
+      size: 1733
