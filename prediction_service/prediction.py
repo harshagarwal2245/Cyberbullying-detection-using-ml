@@ -10,6 +10,7 @@ import string
 import argparse
 import pandas as pd
 import nltk
+nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 from nltk.tokenize import TweetTokenizer
