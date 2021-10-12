@@ -28,7 +28,7 @@ reports:
   params: report\param.json
   scores: report\scores.json
 
-webapp_model_dir: prediction_service\\model\\finalized_model1.sav 
+webapp_model_dir: prediction_service/model/finalized_model1.sav 
 
 mlflow_config:
   artifacts_dir: artifacts
