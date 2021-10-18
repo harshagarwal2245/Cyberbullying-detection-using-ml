@@ -26,7 +26,7 @@ def index():
                 text=list(data)[0]
                 t=prediction.predict(text)
                 if t==0:
-                    response="This tweet doesn't contains cyberbullying actvitis"
+                    response="This tweet doesn't contains cyberbullying actvities "
                 else:
                     response="This tweet contains cyberbullying actvitis"
 

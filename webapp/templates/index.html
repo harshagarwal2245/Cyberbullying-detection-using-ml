@@ -14,8 +14,8 @@ Cybertrolls Detection
 {% block body %}
 <!-- nav bar -->
 
-<nav class="navbar navbar-expand-lg navbar-light shadow fixed-top" style="background-color: #e3f2fd;">
-    <a class="navbar-brand" href="/">Cybertrolls Prediction</a>
+<nav class="navbar navbar-expand-lg navbar-light shadow fixed-top" style="background-color: rgb(27, 27, 27);">
+    <a class="navbar-brand text-white font-weight-lg" href="/">🔐 Cybertrolls Prediction</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -23,10 +23,10 @@ Cybertrolls Detection
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link text-primary text-monospace" href="/"> 🏠 Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="https://github.com/harshagarwal2245/Cyberbullying-detection-using-ml">source code</a>
+                <a class="nav-link text-primary text-monospace" href="https://github.com/harshagarwal2245/Cyberbullying-detection-using-ml">📑source code</a>
             </li>
         </ul>
     </div>
@@ -47,10 +47,10 @@ Cybertrolls Detection
                         <div class="form-group">
                             <label for="translation">
                                 <blockquote class="blockquote">
-                                    <p class="mb-2">Enter the details as indicated:</p>
+                                    <p class="mb-2 text-monospace">Enter the details as indicated:</p>
                                 </blockquote>
                             </label>
-                            <textarea class="form-control" name="Comments" rows="1"
+                            <textarea class="form-control shadow-lg p-3 mb-5 bg-white rounded" name="Comments" rows="1"
                                 placeholder="Enter comment to be detected"></textarea>
                             
                         </div>
@@ -58,26 +58,26 @@ Cybertrolls Detection
                         <!-- Select output language here. -->
                         <div class="form-group">
                         </div>
-                        <button type="submit" class="btn btn-primary mb-2">Submit</button></br>
+                        <button type="submit" class="btn btn-warning p-2 mb-4 shadow-sm text-lg-left" data-toggle="button" aria-pressed="false">Submit ✔️</button></br>
                         </br>
-                    </form>
+                   
                     <!-- Translated text returned by the Translate API is rendered here. -->
                 </div>
-                <div class="col">
-                    <form>
+                  <div class="col">
                         <div class="form-group">
                             <label for="translation-result">
 
                                 <blockquote class="blockquote">
-                                    <p class="mb-2">Prediction:</p>
+                                    <p class="mb-2 text-monospace">Prediction:</p>
                                 </blockquote>
 
                             </label>
-                            <textarea readonly class="form-control" id="exTextarea" rows="5">{{ response }}</textarea>
+                            <textarea readonly class="form-control shadow-lg p-3 mb-5 bg-white rounded" id="exTextarea" rows="5">{{ response }}</textarea>
                         </div>
                     </form>
                 </div>
             </div>
+        </div>
         </div>
 
         {% endblock body %}
