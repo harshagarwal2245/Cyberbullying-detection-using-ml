@@ -27,7 +27,7 @@ def index():
                 t = prediction.form_response(data)
                 if t == 0:
                     response = "This tweet doesn't contains cyberbullying activites"
-               else:
+                else:
                     response = "This tweet contains cyberbullying activites"
                 print(time.time()-t1)
                 return render_template("index.html", response=response)
