@@ -42,8 +42,8 @@ stages:
       md5: 8271ca232f9e71ba7341f28cf00c663b
       size: 1465650
     - path: src/train_and_evaluate.py
-      md5: 4f5c3fa07ccc163a73b5a7e5d31d4232
-      size: 6429
+      md5: faa155673dc3a770bf54dda9b2ba903b
+      size: 6543
     params:
       params.yaml:
         estimators.SupportVectorClassifier.params.gamma: auto

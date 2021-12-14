@@ -16,7 +16,7 @@ import prediction_service
 input_data={
     "correct_data":
     {"Hi this is good tweet"},
-    "incorrect_data":{"dang...i need to stop eatting cheese. Damn you kraft!"}
+    "incorrect data":{"dang...i need to stop eatting cheese. Damn you kraft!"}
 }
 
 def test_form_response(data=input_data["correct_data"]):

@@ -12,7 +12,7 @@ import string
 import argparse
 import pandas as pd
 import numpy as np
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
@@ -118,9 +118,10 @@ def extract_features(tweet, freqs):
 
 def eval_metrics(actual, pred):
     accuracy = accuracy_score(actual, pred)
-    cm = confusion_matrix(actual, pred)
-    cr = classification_report(actual, pred)
-    return accuracy, cm, cr
+    ps = precision_score(actual, pred)
+    rs = recall_score(actual, pred)
+    fs=f1_score(actual, pred)
+    return accuracy, ps, rs,fs
 
 
 def train_and_evaluate(config_path):
@@ -160,12 +161,14 @@ def train_and_evaluate(config_path):
         ######################Evaluating############################################
         predicted_qualities = svm_clf.predict(X_t)
 
-        (acc, cm, rf) = eval_metrics(Y_t, predicted_qualities)
+        (acc, ps, rs,fs) = eval_metrics(Y_t, predicted_qualities)
 
         mlflow.log_param("gamma", gamma)
         mlflow.log_param("random_State",random_state)
-        mlflow.log_metric("acc",acc)
-        #mlflow.log_metric("cm",cm)
+        mlflow.log_metric("accuracy",acc)
+        mlflow.log_metric("Precision",ps)
+        mlflow.log_metric("Recall",rs)
+        mlflow.log_metric("F1",fs)
 
         tracking_url_type_store= urlparse(mlflow.get_artifact_uri()).scheme 
         if tracking_url_type_store != "file":

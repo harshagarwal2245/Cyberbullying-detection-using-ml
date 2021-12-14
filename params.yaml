@@ -12,7 +12,7 @@ load_data:
 split_data:
   train_path: data/processed/train_cybertrolls.csv
   test_path: data\processed\test_cybertrolls.csv
-  test_size: 0.33
+  test_size: 0.2
 
 estimators:
   SupportVectorClassifier:
