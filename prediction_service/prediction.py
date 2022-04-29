@@ -141,8 +141,12 @@ def form_response(dict_request):
 
 def api_response(dict_request):
     data = list(dict_request)[0]
+    r = predict(data)
     print(data)
-    response = predict(data)
+    if r == 0:
+        response = "This comment doesn't contains cyberbullying activites"
+    else:
+        response = "This comment contains cyberbullying activites"
     response = {"response": response}
     return response
     
