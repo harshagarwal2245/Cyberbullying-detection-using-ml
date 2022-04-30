@@ -31,7 +31,7 @@ Saved models: which is used to save model file for api creation
 ```
 
 Picture of softwares
-![GitHub Logo](visvualization/img1.png)
+![GitHub Logo](visvualization/interface.png)
 
 Tox:
 tox is a generic virtualenv management and test command line tool you can use for:
@@ -42,40 +42,32 @@ running your tests in each of the environments, configuring your test tool of ch
 
 acting as a frontend to Continuous Integration servers, greatly reducing boilerplate and merging CI and shell-based testing.
 
+**Installation**
 
-create env
+1. Install python version 3.8
+2. Install git==2.32 version 
+3. Clone the git repository using
+   ``` git clone repo_name ``` 
+4. create virtual enviornment using below command
 
 ```terminal
 conda create -n cyberbullying3 python=3.8 -y
 ```
 
-activate env
+5. Activate newly created enviornment
 
 ```terminal
 conda activate cyberbullying3
 ```
 
-created a requirements.txt file
-
-install the requirements
+6. Install the requirements using pip and requirements.txt
 ```terminal
 pip install -r requirements.txt
 ```
 
-git init
+7. Run app using python app.py
 
-dvc init
-
-dvc add data_given\cybertrolls.json
-
-to download data use command
-
-```
-dvc pull 
-```
-Ml flow tracks all artifacts like dvc but it gives 
-a proper ui it also keeps track of enviorment it creates
-db
-running mlfow server
-
-mlflow server --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./artifacts --host 127.0.0.1 -p 1234
+**Usability** 
+You could o with standard installation but we had deployed on cloud
+you can directly use it from there [Cyberbullying][https://cyberbullying-detection12.herokuapp.com/ Cyberbullying_detection]
+Or you can use it in form of api you can use same above link and make request it would give its prediction accordingly
