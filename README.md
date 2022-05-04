@@ -50,7 +50,12 @@ were used. Several classifiers are trained for determining cyberbullying.
 
 ## Demo
 
-Insert gif or link to demo
+The video shows two different comments and it prediction using software. and how can user use it
+
+
+https://user-images.githubusercontent.com/55704229/166684735-c1eab1ff-a6a0-472c-bc96-1f5bd6584cf0.mp4
+
+
 
 
 ## Installation
