@@ -24,6 +24,6 @@ jobs:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_TOKEN }}
         HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
         dockerfile_directory: ./
-        dockerfile_name: DockerFile
+        dockerfile_name: Dockerfile
         docker_options: "--no-cache"
         process_type: web
