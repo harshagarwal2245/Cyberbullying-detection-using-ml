@@ -20,7 +20,7 @@ jobs:
     - name: Build,Push and release a docker container to Heroku
       uses: gonuit/heroku-docker-deploy@v1.3.3
       with: 
-      
+        email: ${{ secrets.HEROKU_EMAIL }}
         HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
         HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
         dockerfile_directo: ./
