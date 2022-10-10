@@ -15,7 +15,7 @@ jobs:
 
     steps:
     - name: Checkout
-    - uses: actions/checkout@v2
+      uses: actions/checkout@v2
     
     - name: Build,Push and release a docker container to Heroku
       uses: gonuit/heroku-docker-deploy@v1.3.3
