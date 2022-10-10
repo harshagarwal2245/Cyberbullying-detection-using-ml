@@ -15,6 +15,7 @@ import numpy as np
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 import nltk
 from nltk.corpus import stopwords
@@ -156,7 +157,7 @@ def train_and_evaluate(config_path):
     mlflow.set_experiment(mlflow_config["experiment_name"])
     with mlflow.start_run(run_name=mlflow_config["run_name"]) as run:
     ########################Model training#######################################
-        svm_clf = SVC(gamma=gamma, random_state=random_state)
+        svm_clf = SVC(C=0.7 ,random_state=random_state)
         svm_clf.fit(X, Y)
         ######################Evaluating############################################
         predicted_qualities = svm_clf.predict(X_t)
