@@ -23,7 +23,7 @@ jobs:
         email: ${{ secrets.HEROKU_EMAIL }}
         HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
         HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
-        dockerfile_directo: ./
+        dockerfile_directory: ./
         dockerfile_name: DockerFile
         docker_options: "--no-cache"
         process_type: web
