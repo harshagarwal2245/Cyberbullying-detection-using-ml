@@ -16,8 +16,8 @@ from nltk.stem import PorterStemmer
 from nltk.tokenize import TweetTokenizer
 
 
-params_path = "params.yaml"
 
+params_path = "params.yaml"
 
 def process_tweet(tweet):
     """Process tweet function.
@@ -115,20 +115,20 @@ def read_params(config_path=params_path):
         config = yaml.safe_load(yaml_file)
     return config
 
+config = read_params(params_path)
+model_dir_path = config["webapp_model_dir"]
+model = joblib.load(model_dir_path)
+train_data_path = config["split_data"]["train_path"]
+target = config["base"]["target_col"]
+gamma = config["estimators"]["SupportVectorClassifier"]["params"]["gamma"]
+random_state = config["estimators"]["SupportVectorClassifier"]["params"]["random_state"]
+train_data = pd.read_csv(train_data_path)
+train_y = train_data[target]
+train_x = train_data["content"]
+freqs = build_freqs(train_x, train_y)
 
 def predict(data):
-    config = read_params(params_path)
-    model_dir_path = config["webapp_model_dir"]
-    train_data_path = config["split_data"]["train_path"]
-    target = config["base"]["target_col"]
-    gamma = config["estimators"]["SupportVectorClassifier"]["params"]["gamma"]
-    random_state = config["estimators"]["SupportVectorClassifier"]["params"]["random_state"]
-    train_data = pd.read_csv(train_data_path)
-    train_y = train_data[target]
-    train_x = train_data["content"]
-    freqs = build_freqs(train_x, train_y)
     x = extract_features(data, freqs)
-    model = joblib.load(model_dir_path)
     prediction = model.predict(x).tolist()[0]
     return prediction
 
